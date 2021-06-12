@@ -1,6 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState,useContext } from "react";
-import {CartContext} from "../Context/CartContext";
+import React, { useContext } from "react";
 import {SignInContext} from '../Context/SignInContext'
 import {predispatch} from './Predispatch';
 import { useCart } from "../Context/CartContext";
@@ -11,14 +9,6 @@ const Checkout = () => {
   const { itemInCart, totalCartValue } = state;
   const {userData}=useContext(SignInContext)
 
-//   const [items,setItems]=useState([])
-//   useEffect(() => {
-//     axios.get('http://localhost:3000/user/609ba47c6b47f313fca60b47/wishlist')
-//         .then(response => setItems(response.data.wishlist));
-// }, []);
-
-
-console.log(itemInCart);
   return (
     <div>
       <h2>Items in Cart:</h2>
