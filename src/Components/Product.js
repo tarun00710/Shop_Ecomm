@@ -61,18 +61,16 @@ const getFast=(filterData,sortBy) =>{
 }
 
   const getSortData = sortFunction(data, state.sortBy);
-  console.log(getSortData); 
   const filterData=getFilteredData(getSortData,state.stock)
-  console.log(filterData);
   const fastDelivery=getFast(filterData, state.delivery);
-  console.log(fastDelivery);
+
   return (
     <>
       <SortFilter />
       <div className="grid-vertical-card">
         {fastDelivery.map(
           ({
-            id,
+            _id,
             name,
             image,
             price,
@@ -82,7 +80,7 @@ const getFast=(filterData,sortBy) =>{
             fastDelivery
           }) => (
             <ProductCard
-              id={id}
+              id={_id}
               image={image}
               name={name}
               price={price}

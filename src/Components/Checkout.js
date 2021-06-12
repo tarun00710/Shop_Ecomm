@@ -1,33 +1,99 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState,useContext } from "react";
+import {CartContext} from "../Context/CartContext";
+import {SignInContext} from '../Context/SignInContext'
+import {predispatch} from './Predispatch';
 import { useCart } from "../Context/CartContext";
+
+
 const Checkout = () => {
   const { state, dispatch } = useCart();
   const { itemInCart, totalCartValue } = state;
+  const {userData}=useContext(SignInContext)
+
+//   const [items,setItems]=useState([])
+//   useEffect(() => {
+//     axios.get('http://localhost:3000/user/609ba47c6b47f313fca60b47/wishlist')
+//         .then(response => setItems(response.data.wishlist));
+// }, []);
+
+
+console.log(itemInCart);
   return (
     <div>
-      <h1>Items in Cart:</h1>
+      <h2>Items in Cart:</h2>
       <div class="grid-2">
         <div>
-          {itemInCart.map(({ id, name, image, price, inStock }) => {
+          {itemInCart?.map((item) => {
+            const {product,quantity}=item;
+            const { _id, name, image, price, inStock }=product
+            
             return (
               <>
-                <div id={id} class="horizontal-card card-dismiss">
+                <div id={_id} class="horizontal-card card-dismiss">
                   <i
-                    onClick={() =>
-                      dispatch({ type: "REMOVECART", payload: { id, price } })
+
+                    onClick={async() =>{
+                      const check=await predispatch(_id,userData._id,"removeCart")
+                      check.success ?  dispatch({ 
+                      type: "REMOVE_CART", 
+                      payload: {
+                        _id,
+                         name,
+                         image,
+                         price,
+                        inStock 
+                      }}
+                      ) : {}
+                       
                     }
-                    class="fas fa-times dismiss"
+                    }
+                    class="fa fa-trash" aria-hidden="true"
                   ></i>
                   <img class="hcard-image" src={image} alt="img"></img>
                   <div class="card-info">
                     <div class="card-description">
-                      <h3>{name}</h3>
+                      <h4>{name}</h4>
                       <p>Rs. {price}</p>
-                      {inStock && <div> In Stock </div>}
-                      {!inStock && <div> Out of Stock </div>}
+                      {inStock && <p> In Stock </p>}
+                      {!inStock && <p> Out of Stock </p>}
+                      <div>
+                        <i class="fa fa-minus-square" aria-hidden="true" 
+                        onClick={async()=>{
+                          const check=await predispatch(_id,userData._id,"decreaseQuantity",quantity)
+                          check.success ? dispatch({type:"DECREASE_CART",payload:{_id,quantity}}) : {}
+                          
+                        }
+                        }>
+                        
+                        </i> 
+                        {quantity}
+                        <i class="fa fa-plus-square" aria-hidden="true" 
+                        onClick={
+                          async()=>{
+                            const check=await predispatch(_id,userData._id,"increaseQuantity",quantity)
+                            check.success ? dispatch({type:"INCREASE_CART",payload:{_id,quantity}}) : {}
+                          }
+                        }>
+                        </i>
+                      </div>
+                     
                     </div>
                     <div class="card-button-option">
-                      <button type="button" class="btn btn-outline">
+                      <button type="button" class="btn btn-outline"
+                      onClick={async() =>{
+                        const check= await predispatch(_id,userData._id,"moveToWishlist")
+                      check.success ?  dispatch({ type: "MOVE_TO_WISHLIST",  payload: {
+                        _id,
+                         name,
+                         image,
+                         price,
+                        inStock 
+                      }}) : {}
+                      }
+                      }
+                      >
+                      
                         Move to Wishlist
                       </button>
                     </div>

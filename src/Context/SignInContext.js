@@ -1,35 +1,39 @@
 import React, { createContext, useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from 'axios';
 export const SignInContext = createContext();
 
 export const SignInContextProv = ({ children }) => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const { state } = useLocation();
-  console.log({ state });
+  const [userData,setUserData] = useState({})
+
+  console.log(userData)
   const logIn = async (e, email, password, setuserCheck) => {
     e.preventDefault();
     try {
-      const res = await fetch("https://glacial-spire-70844.herokuapp.com/login", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ email, password })
-      });
-      const data = await res.json();
-      if (data.status === 422 || !data) {
+      //https://glacial-spire-70844.herokuapp.com/login
+      const res = await axios.post("https://glacial-spire-70844.herokuapp.com/user/login",
+      {email,password}
+      )
+      if(res.status){
+        setUserData(res.data.user)
+      }
+      console.log("response",res)
+      if (userData.status === 422 || !userData) {
         window.alert("Invalid Login");
       } else {
-        console.log(data);
         setLoggedIn(true);
         setuserCheck({ email: "", password: "" });
         navigate(state?.from ? state.from : "/");
       }
     } catch (err) {
-      console.log(err);
+      res.json({success:false,error:err})
     }
   };
   return (
-    <SignInContext.Provider value={{ logIn, loggedIn, setLoggedIn }}>
+    <SignInContext.Provider value={{ logIn, loggedIn, setLoggedIn,userData,setUserData }}>
       {children}
     </SignInContext.Provider>
   );

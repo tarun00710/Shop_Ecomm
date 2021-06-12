@@ -159,6 +159,7 @@ body {
   color: white;
   font-size: 0.8rem;
   margin: 10px 10px 0 0;
+  cursor:pointer;
 }
 .btn-primary {
   background-color: var(--primary-color);
@@ -218,11 +219,12 @@ body {
 .horizontal-card {
   display: flex;
   align-items: center;
-  border: 1px solid rgb(233, 233, 233);
+  border: 1px solid rgb(241, 239, 239);
   margin-top: 1rem;
 }
-.card-info {
+.card-info{
   display: flex;
+  margin-left:0.5rem;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -231,11 +233,11 @@ body {
   flex-direction: column;
 }
 .card-description > p {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 .card-description > span {
   font-size: 0.7rem;
-  padding: 10px 0 10px 0;
+  padding: 12px 0 12px 0;
 }
 
 .card-button-option {
@@ -243,19 +245,29 @@ body {
   flex-wrap: wrap;
 }
 .hcard-image {
-  width: 150px;
-  height: auto;
+  width: auto;
+  height: 150px;
 }
 
 .card-dismiss {
   position: relative;
 }
-.dismiss {
+
+.fa-plus-square{
+  padding-left:0.5rem;
+  color:rgb(161, 161, 161)
+}
+.fa-minus-square{
+  padding-right:0.5rem;
+  color:rgb(161, 161, 161)
+}
+.fa-trash{
   position: absolute;
-  font-size: 1.2rem;
-  color: grey;
-  top: 8px;
-  right: 10px;
+  font-size: 1.1rem;
+  color: rgb(230, 119, 119);
+  top: 2px;
+  cursor:pointer;
+  right: 5px;
 }
 /* Text overlay*/
 .horizontal-card > .vcard-image {
@@ -552,7 +564,7 @@ body {
   grid-template-columns: 2fr 1fr;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgb(173, 172, 172);
+  border: 1px solid rgb(226, 226, 226);
   margin: 1rem;
 }
 .flex-in-grid {
@@ -656,11 +668,11 @@ body {
 .nav-menu-items:hover {
   background-color: #1f1d1d;
 }
-.fa-times {
+/* .fa-times {
   font-size: 1.3rem;
   color: whitesmoke;
   padding: 0.5rem;
-}
+} */
 
 hr {
   border: 0.1px solid rgb(88, 171, 255);

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useCart } from "../Context/CartContext";
-
+import {SignInContext} from "../Context/SignInContext";
+import {predispatch} from './Predispatch';
 const ProductCard = ({
   id,
   name,
@@ -12,6 +13,7 @@ const ProductCard = ({
   fastDelivery
 }) => {
   const { dispatch } = useCart();
+  const {userData}=useContext(SignInContext)
   return (
     <>
       <div key={id} className="shadow">
@@ -30,41 +32,50 @@ const ProductCard = ({
             )}
             <div className="card-button-option">
               <button
-                onClick={() =>
-                  dispatch({
-                    type: "ADDTOCART",
+                onClick={() =>{
+                  const check=predispatch(id,userData._id,"cart")
+                  return check ? dispatch({
+                    type: "ADD_TO_CART",
                     payload: {
-                      id,
-                      name,
-                      image,
-                      price,
-                      productName,
-                      inStock,
-                      level,
-                      fastDelivery
+                      product:{ 
+                        id,
+                        name,
+                        image,
+                        price,
+                        productName,
+                        inStock,
+                        level,
+                        fastDelivery
+                      },
+                      quantity:0   
                     }
-                  })
+                  }) : {}
+                }
+                  
                 }
                 className="btn btn-primary"
               >
                 <i className="fas fa-shopping-cart"></i> Add to Cart
               </button>
               <button
-                onClick={() =>
-                  dispatch({
-                    type: "ADDTOWISHLIST",
-                    payload: {
-                      id,
-                      name,
-                      image,
-                      price,
-                      productName,
-                      inStock,
-                      level,
-                      fastDelivery
-                    }
-                  })
-                }
+                onClick={() => {
+                  const check=predispatch(id,userData._id,"wishlist")
+                  if(check)
+                    return dispatch({
+                      type: "ADD_TO_WISHLIST",
+                      payload: {
+                        id,
+                        name,
+                        image,
+                        price,
+                        productName,
+                        inStock,
+                        level,
+                        fastDelivery
+                      }
+                    })
+                  return null  
+                }}
                 type="button"
                 className="btn btn-outline"
               >
