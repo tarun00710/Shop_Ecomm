@@ -31,7 +31,7 @@ export const SignInContextProv = ({ children }) => {
     } catch (err) {
       res.json({success:false,error:err})
     }
-  };
+  }
   return (
     <SignInContext.Provider value={{ logIn, loggedIn, setLoggedIn,userData,setUserData }}>
       {children}

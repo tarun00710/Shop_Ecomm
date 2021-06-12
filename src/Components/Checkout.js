@@ -32,7 +32,8 @@ const Checkout = () => {
                          name,
                          image,
                          price,
-                        inStock 
+                        inStock ,
+                        quantity
                       }}
                       ) : {}
                        
@@ -51,7 +52,7 @@ const Checkout = () => {
                         <i class="fa fa-minus-square" aria-hidden="true" 
                         onClick={async()=>{
                           const check=await predispatch(_id,userData._id,"decreaseQuantity",quantity)
-                          check.success ? dispatch({type:"DECREASE_CART",payload:{_id,quantity}}) : {}
+                          check.success ? dispatch({type:"DECREASE_CART",payload:{_id,price,quantity}}) : {}
                           
                         }
                         }>
@@ -62,7 +63,7 @@ const Checkout = () => {
                         onClick={
                           async()=>{
                             const check=await predispatch(_id,userData._id,"increaseQuantity",quantity)
-                            check.success ? dispatch({type:"INCREASE_CART",payload:{_id,quantity}}) : {}
+                            check.success ? dispatch({type:"INCREASE_CART",payload:{_id,price,quantity}}) : {}
                           }
                         }>
                         </i>
@@ -78,7 +79,8 @@ const Checkout = () => {
                          name,
                          image,
                          price,
-                        inStock 
+                        inStock,
+                        quantity 
                       }}) : {}
                       }
                       }
