@@ -565,7 +565,6 @@ body {
   align-items: center;
   justify-content: space-between;
   border: 1px solid rgb(226, 226, 226);
-  margin: 1rem;
 }
 .flex-in-grid {
   display: flex;
