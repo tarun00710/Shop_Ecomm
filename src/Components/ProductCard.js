@@ -47,7 +47,7 @@ const ProductCard = ({
                         level,
                         fastDelivery
                       },
-                      quantity:0   
+                      quantity:1
                     }
                   }) : {}
                 }
