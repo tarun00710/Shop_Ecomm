@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer,useEffect } from "react";
+import React, { createContext, useContext, useReducer,useEffect, useState } from "react";
 import {SignInContext} from './SignInContext';
 export const CartContext = createContext();
 
@@ -103,6 +103,8 @@ const reducerfunction = (state, action) => {
 };
 
 export function ContextProvider({ children }) {
+
+const [isLoading,setisLoading] =useState(true) 
 const {userData}=useContext(SignInContext);
   useEffect(()=>{
     console.log("dispatching",userData)
@@ -120,7 +122,7 @@ const {userData}=useContext(SignInContext);
   });
   console.log(state)
   return (
-    <CartContext.Provider value={{ state, dispatch }}>
+    <CartContext.Provider value={{ state, dispatch,isLoading,setisLoading }}>
       {children}
     </CartContext.Provider>
   );

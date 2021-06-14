@@ -11,7 +11,7 @@ const ProductCard = ({
   inStock,
   level
 }) => {
-  const { dispatch } = useCart();
+  const { dispatch,isLoading,setisLoading } = useCart();
   const {userData}=useContext(SignInContext)
   return (
     <>
@@ -29,7 +29,7 @@ const ProductCard = ({
               <button
                 onClick={() =>{
                   const check=predispatch(id,userData._id,"cart")
-                  return check ? dispatch({
+                  return check.success ? dispatch({
                     type: "ADD_TO_CART",
                     payload: {
                       product:{ 

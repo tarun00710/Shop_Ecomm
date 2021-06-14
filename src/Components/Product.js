@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SortFilter from "./SortFilter";
 import ProductCard from "./ProductCard";
 import { useSortFilter } from "../Context/SortFilerContext";
+import { CartContext } from "../Context/CartContext";
+import Loading from "./Loader";
 
 const Product = () => {
+  const {isLoading,setisLoading}=useContext(CartContext)
   const [data, setdata] = useState([]);
   useEffect(() => {
     const getdatalist = async () => {
@@ -14,6 +17,8 @@ const Product = () => {
         }
       });
       const datalist = await res.json();
+      if(datalist)
+      setisLoading(false)
       setdata(datalist.products);
     };
     getdatalist();
@@ -67,7 +72,9 @@ const getFast=(filterData,sortBy) =>{
   return (
     <>
       <SortFilter />
-      <div className="grid-vertical-card">
+      
+      {isLoading?<Loading/>:
+        <div className="grid-vertical-card">
         {fastDelivery.map(
           ({
             _id,
@@ -91,7 +98,8 @@ const getFast=(filterData,sortBy) =>{
             />
           )
         )}
-      </div>
+        </div>
+    }
     </>
   );
 };
