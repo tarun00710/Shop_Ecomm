@@ -9,8 +9,7 @@ const ProductCard = ({
   price,
   productName,
   inStock,
-  level,
-  fastDelivery
+  level
 }) => {
   const { dispatch } = useCart();
   const {userData}=useContext(SignInContext)
@@ -20,16 +19,12 @@ const ProductCard = ({
         <img className="card-image" src={image} alt={productName} />
         <div className="card-inform">
           <div className="card-description">
-            <h3> {name} </h3>
-            <div>Rs. {price}</div>
-            {inStock && <div> In Stock </div>}
-            {!inStock && <div> Out of Stock </div>}
-            <div>{level}</div>
-            {fastDelivery ? (
-              <div> Fast Delivery </div>
-            ) : (
-              <div> 3 days minimum </div>
-            )}
+            <p className="head_title"> {name} </p>
+            <p>Rs. {price}</p>
+            {inStock && <p> In Stock </p>}
+            {!inStock && <p> Out of Stock </p>}
+            <p>{level}</p>
+           
             <div className="card-button-option">
               <button
                 onClick={() =>{

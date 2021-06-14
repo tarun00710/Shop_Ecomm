@@ -4,12 +4,13 @@ import { useSortFilter } from "../Context/SortFilerContext";
 const SortFilter = () => {
   const [checked,setChecked]=useState(false);
   const { dispatch } = useSortFilter();
-  console.log(checked);
+
   return (
     <div className="Options">
       <div className="Sort">
         <strong>Sort By:</strong>
         <input
+        className="input_type"
           onClick={() =>
             dispatch({ type: "HIGH_TO_LOW", payload: "HightoLow" })
           }
@@ -18,6 +19,7 @@ const SortFilter = () => {
         ></input>
         <label>High to Low</label>
         <input
+        className="input_type"
           onClick={() =>
             dispatch({ type: "LOW_TO_HIGH", payload: "LowtoHigh" })
           }
@@ -29,18 +31,21 @@ const SortFilter = () => {
       <div className="Filter">
         <strong>Filter By:</strong>
         <input
+        className="input_type"
           onClick={() => dispatch({ type: "INSTOCK", payload: "Instock" })}
           name="filter"
           type="radio"
         ></input>
         <label>InStock</label>
         <input
+        className="input_type"
           onClick={() => dispatch({ type: "OUTSTOCK", payload: "Outofstock" })}
           name="filter"
           type="radio"
         ></input>
         <label>Out of Stock</label>
         <input
+        className="input_type"
           onClick={(e) => {
             console.log(checked);
             setChecked(e.target.checked)

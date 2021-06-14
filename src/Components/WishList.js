@@ -24,7 +24,7 @@ const WishList = () => {
       {itemInWishlist?.map(({_id, name, image, price, inStock }) => {
         return (
           <>
-            <div  class="horizontal-card card-dismiss">
+            <div  className="horizontal-card card-dismiss">
               <div
                 onClick={async() =>{
                   const check=await predispatch(_id,userData._id,"removeWishlist")
@@ -40,17 +40,17 @@ const WishList = () => {
                 }
               }
               >
-                <i class="fa fa-trash"></i>
+                <i className="fa fa-trash"></i>
               </div>
-              <img class="hcard-image" src={image} alt="img" />
-              <div class="card-info">
-                <div class="card-description">
-                  <h2>{name}</h2> 
+              <img className="hcard-image" src={image} alt="img" />
+              <div className="card-info">
+                <div className="card-description">
+                  <h3>{name}</h3> 
                   <p>Rs. {price}</p>
-                  {inStock && <div> In Stock </div>}
-                  {!inStock && <div> Out of Stock </div>}
+                  {inStock && <p> In Stock </p>}
+                  {!inStock && <p> Out of Stock </p>}
                 </div>
-                <div class="card-button-option">
+                <div className="card-button-option">
                   <button type="button" class="btn btn-outline" 
                   onClick={async()=>{
                     const check=await predispatch(_id,userData._id,"moveToCart")

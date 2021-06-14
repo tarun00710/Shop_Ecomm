@@ -9,13 +9,10 @@ import SignUser from "./Components/SignUp";
 import LogInUser from "./Components/SignIn";
 import PrivateRoute from "./Auth/PrivateRoute";
 import Sidebar from "./Components/Sidebar";
-import {useSignInContext} from './Context/SignInContext'
 export default function App() {
   const [sidebar, togglesidebar] = useState(false);
 
   const handleSidebar = () => togglesidebar((sidebar) => !sidebar);
-  // const{ logIn, loggedIn, setLoggedIn,userData,setUserData }=useSignInContext()
-  // console.log("this is user data",userData)
   return (
     <div className="App">
       <Nav handleSidebar={handleSidebar} />
