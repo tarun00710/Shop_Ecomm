@@ -45,7 +45,7 @@ const WishList = () => {
               <img className="hcard-image" src={image} alt="img" />
               <div className="card-info">
                 <div className="card-description">
-                  <h3>{name}</h3> 
+                <p className="head_title"> {name} </p>
                   <p>Rs. {price}</p>
                   {inStock && <p> In Stock </p>}
                   {!inStock && <p> Out of Stock </p>}

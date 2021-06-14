@@ -44,7 +44,7 @@ const Checkout = () => {
                   <img class="hcard-image" src={image} alt="img"></img>
                   <div class="card-info">
                     <div class="card-description">
-                      <h4>{name}</h4>
+                    <p className="head_title"> {name} </p>
                       <p>Rs. {price}</p>
                       {inStock && <p> In Stock </p>}
                       {!inStock && <p> Out of Stock </p>}
