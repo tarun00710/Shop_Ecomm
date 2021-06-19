@@ -17,7 +17,7 @@ const ProductCard = ({
   return (
     <>
    
-      <div key={id} className="shadow">
+      <div key={_id} className="shadow">
       <NavLink className="navlink" to={`/product/${_id}`}>
         <img className="card-image" src={image} alt={productName} />
         </NavLink>   
