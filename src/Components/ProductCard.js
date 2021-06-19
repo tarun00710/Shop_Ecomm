@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 import {SignInContext} from "../Context/SignInContext";
 import {predispatch} from './Predispatch';
@@ -15,11 +16,18 @@ const ProductCard = ({
   const {userData}=useContext(SignInContext)
   return (
     <>
+   
       <div key={id} className="shadow">
+      <NavLink className="navlink" to={`/product/${id}`}>
         <img className="card-image" src={image} alt={productName} />
+        </NavLink>   
         <div className="card-inform">
           <div className="card-description">
-            <p className="head_title"> {name} </p>
+          <NavLink className="navlink" to={`/product/:${id}`}>
+          <p className="head_title"> {name} </p>
+          </NavLink>
+           
+                  
             <p>Rs. {price}</p>
             {inStock && <p> In Stock </p>}
             {!inStock && <p> Out of Stock </p>}
@@ -27,8 +35,8 @@ const ProductCard = ({
            
             <div className="card-button-option">
               <button
-                onClick={() =>{
-                  const check=predispatch(id,userData._id,"cart")
+                onClick={async() =>{
+                  const check=await predispatch(id,userData._id,"cart")
                   return check.success ? dispatch({
                     type: "ADD_TO_CART",
                     payload: {
@@ -39,8 +47,7 @@ const ProductCard = ({
                         price,
                         productName,
                         inStock,
-                        level,
-                        fastDelivery
+                        level
                       },
                       quantity:1
                     }
@@ -53,8 +60,8 @@ const ProductCard = ({
                 <i className="fas fa-shopping-cart"></i> Add to Cart
               </button>
               <button
-                onClick={() => {
-                  const check=predispatch(id,userData._id,"wishlist")
+                onClick={async() => {
+                  const check=await predispatch(id,userData._id,"wishlist")
                   if(check)
                     return dispatch({
                       type: "ADD_TO_WISHLIST",
@@ -65,8 +72,7 @@ const ProductCard = ({
                         price,
                         productName,
                         inStock,
-                        level,
-                        fastDelivery
+                        level
                       }
                     })
                   return null  
@@ -80,6 +86,7 @@ const ProductCard = ({
           </div>
         </div>
       </div>
+    
     </>
   );
 };

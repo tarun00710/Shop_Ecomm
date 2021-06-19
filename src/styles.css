@@ -720,3 +720,16 @@ hr {
   font-weight: 500;
   color:rgb(82, 82, 82);
 }
+
+.navlink{
+  text-decoration: none;
+}
+
+.product-card-detail{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width:80%;
+  object-fit:contain;
+  margin-left: 1rem;
+}

@@ -34,7 +34,7 @@ const reducerfunction = (state, action) => {
           ...state.itemInWishlist.filter((item) => item._id !== payload._id)
         ]
       };
-    }
+    }  
     case "MOVE_TO_CART":{
       console.log("Move to cart fired")
       return {...state,

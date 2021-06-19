@@ -9,6 +9,7 @@ import SignUser from "./Components/SignUp";
 import LogInUser from "./Components/SignIn";
 import PrivateRoute from "./Auth/PrivateRoute";
 import Sidebar from "./Components/Sidebar";
+import ProductDetail from "./Components/ProductDetail";
 export default function App() {
   const [sidebar, togglesidebar] = useState(false);
 
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/" element={<Product />} />
         <Route path="/signup" element={<SignUser />} />
         <Route path="/signin" element={<LogInUser />} />
+        <Route path="/product/:productId" element={<ProductDetail/>}/>
         <PrivateRoute path="/checkout" element={<Checkout />} />
         <PrivateRoute path="/wishlist" element={<WishList />} />
       </Routes>

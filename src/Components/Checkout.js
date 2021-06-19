@@ -17,7 +17,7 @@ const Checkout = () => {
           {itemInCart?.map((item) => {
             const {product,quantity}=item;
             const { _id, name, image, price, inStock }=product
-            
+            console.log("product id checking",name,_id)
             return (
               <>
                 <div id={_id} class="horizontal-card card-dismiss">
@@ -62,6 +62,7 @@ const Checkout = () => {
                         <i class="fa fa-plus-square" aria-hidden="true" 
                         onClick={
                           async()=>{
+                            console.log("productid",name,_id)
                             const check=await predispatch(_id,userData._id,"increaseQuantity",quantity)
                             check.success ? dispatch({type:"INCREASE_CART",payload:{_id,price,quantity}}) : {}
                           }
@@ -73,6 +74,7 @@ const Checkout = () => {
                     <div class="card-button-option">
                       <button type="button" class="btn btn-outline"
                       onClick={async() =>{
+                        
                         const check= await predispatch(_id,userData._id,"moveToWishlist")
                       check.success ?  dispatch({ type: "MOVE_TO_WISHLIST",  payload: {
                         _id,

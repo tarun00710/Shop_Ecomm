@@ -4,25 +4,27 @@ import ProductCard from "./ProductCard";
 import { useSortFilter } from "../Context/SortFilerContext";
 import { CartContext } from "../Context/CartContext";
 import Loading from "./Loader";
+import {ProductCreateContext} from "../Context/ProductContext";
 
 const Product = () => {
   const {isLoading,setisLoading}=useContext(CartContext)
-  const [data, setdata] = useState([]);
-  useEffect(() => {
-    const getdatalist = async () => {
-      const res = await fetch("https://glacial-spire-70844.herokuapp.com/products", {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json"
-        }
-      });
-      const datalist = await res.json();
-      if(datalist)
-      setisLoading(false)
-      setdata(datalist.products);
-    };
-    getdatalist();
-  }, []);
+  const {data}=useContext(ProductCreateContext)
+  // const [data, setdata] = useState([]);
+  // useEffect(() => {
+  //   const getdatalist = async () => {
+  //     const res = await fetch("https://glacial-spire-70844.herokuapp.com/products", {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-type": "application/json"
+  //       }
+  //     });
+  //     const datalist = await res.json();
+  //     if(datalist)
+  //     setisLoading(false)
+  //     setdata(datalist.products);
+  //   };
+  //   getdatalist();
+  // }, []);
 
   const { state } = useSortFilter();
   const sortFunction = (data, sortBy) => {
