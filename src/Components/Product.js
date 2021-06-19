@@ -89,7 +89,7 @@ const getFast=(filterData,sortBy) =>{
             fastDelivery
           }) => (
             <ProductCard
-              id={_id}
+              _id={_id}
               image={image}
               name={name}
               price={price}

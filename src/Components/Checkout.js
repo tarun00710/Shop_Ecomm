@@ -56,7 +56,7 @@ const Checkout = () => {
                           
                         }
                         }>
-                        
+                         
                         </i> 
                         {quantity}
                         <i class="fa fa-plus-square" aria-hidden="true" 

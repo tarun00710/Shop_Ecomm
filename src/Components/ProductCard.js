@@ -4,7 +4,7 @@ import { useCart } from "../Context/CartContext";
 import {SignInContext} from "../Context/SignInContext";
 import {predispatch} from './Predispatch';
 const ProductCard = ({
-  id,
+  _id,
   name,
   image,
   price,
@@ -18,12 +18,12 @@ const ProductCard = ({
     <>
    
       <div key={id} className="shadow">
-      <NavLink className="navlink" to={`/product/${id}`}>
+      <NavLink className="navlink" to={`/product/${_id}`}>
         <img className="card-image" src={image} alt={productName} />
         </NavLink>   
         <div className="card-inform">
           <div className="card-description">
-          <NavLink className="navlink" to={`/product/:${id}`}>
+          <NavLink className="navlink" to={`/product/:${_id}`}>
           <p className="head_title"> {name} </p>
           </NavLink>
            
@@ -41,7 +41,7 @@ const ProductCard = ({
                     type: "ADD_TO_CART",
                     payload: {
                       product:{ 
-                        id,
+                        _id,
                         name,
                         image,
                         price,
@@ -61,12 +61,12 @@ const ProductCard = ({
               </button>
               <button
                 onClick={async() => {
-                  const check=await predispatch(id,userData._id,"wishlist")
+                  const check=await predispatch(_id,userData._id,"wishlist")
                   if(check)
                     return dispatch({
                       type: "ADD_TO_WISHLIST",
                       payload: {
-                        id,
+                        _id,
                         name,
                         image,
                         price,
