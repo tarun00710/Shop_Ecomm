@@ -10,8 +10,12 @@ import LogInUser from "./Components/SignIn";
 import PrivateRoute from "./Auth/PrivateRoute";
 import Sidebar from "./Components/Sidebar";
 import ProductDetail from "./Components/ProductDetail";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function App() {
   const [sidebar, togglesidebar] = useState(false);
+  
 
   const handleSidebar = () => togglesidebar((sidebar) => !sidebar);
   return (
@@ -26,6 +30,11 @@ export default function App() {
         <PrivateRoute path="/checkout" element={<Checkout />} />
         <PrivateRoute path="/wishlist" element={<WishList />} />
       </Routes>
+      <ToastContainer
+      position="top-right"
+      autoClose={2000}
+      pauseOnHover={false}
+      />
     </div>
   );
 }

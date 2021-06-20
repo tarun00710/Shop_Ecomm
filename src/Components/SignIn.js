@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { SignInContext } from "../Context/SignInContext";
 
 const LogInUserfunc = () => {
+
   const [userCheck, setuserCheck] = useState({ email: "", password: "" });
+
 
   const userInfo = (e) => {
     const { name, value } = e.target;
@@ -11,7 +13,7 @@ const LogInUserfunc = () => {
     if (name === "password") setuserCheck({ ...userCheck, password: value });
   };
   const { email, password } = userCheck;
-  const { logIn } = useContext(SignInContext);
+  const { logIn, loggedIn } = useContext(SignInContext);
   return (
     <>
       <form className="form" method="#">
@@ -44,7 +46,10 @@ const LogInUserfunc = () => {
         </div>
         <div className="form-input">
           <input
-            onClick={(e) => logIn(e, email, password, setuserCheck)}
+            onClick={(e) => {
+              logIn(e, email, password, setuserCheck)
+            }}
+            value="Log In"
             type="submit"
             className="input"
           />

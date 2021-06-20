@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 import {SignInContext} from "../Context/SignInContext";
 import {predispatch} from './Predispatch';
+import {notifyCart,notifyLogin,notifyWishlist} from "./toast";
+
+
 const ProductCard = ({
   _id,
   name,
@@ -12,8 +15,10 @@ const ProductCard = ({
   inStock,
   level
 }) => {
+
   const { dispatch} = useCart();
-  const {userData}=useContext(SignInContext)
+  const {userData, loggedIn}=useContext(SignInContext)
+
   return (
     <>
    
@@ -37,6 +42,7 @@ const ProductCard = ({
               <button
                 onClick={async() =>{
                   const check=await predispatch(_id,userData._id,"cart")
+                  loggedIn ? notifyCart() : notifyLogin()
                   return check.success ? dispatch({
                     type: "ADD_TO_CART",
                     payload: {
@@ -61,9 +67,11 @@ const ProductCard = ({
               </button>
               <button
                 onClick={async() => {
+
+                  loggedIn ? notifyWishlist() : notifyLogin()
                   const check=await predispatch(_id,userData._id,"wishlist")
-                  if(check)
-                    return dispatch({
+                  {check ?
+                     dispatch({
                       type: "ADD_TO_WISHLIST",
                       payload: {
                         _id,
@@ -75,14 +83,15 @@ const ProductCard = ({
                         level
                       }
                     })
-                  return null  
-                }}
+                  : null  
+                }}}
                 type="button"
                 className="btn btn-outline"
               >
                 Move to Wishlist
               </button>
             </div>
+
           </div>
         </div>
       </div>

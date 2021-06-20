@@ -4,6 +4,7 @@ import {CartContext} from "../Context/CartContext";
 import {SignInContext} from '../Context/SignInContext'
 import Loading from "./Loader";
 import {predispatch} from './Predispatch';
+import { toast } from 'react-toastify';
 
 const WishList = () => {
   
@@ -31,7 +32,7 @@ const WishList = () => {
                 <div
                   onClick={async() =>{
                     const check=await predispatch(_id,userData._id,"removeWishlist")
-                    console.log(check)
+                    
                     check.success ?  dispatch({ type: "REMOVE_WISHLIST",payload: {
                       _id,
                        name,
@@ -81,10 +82,7 @@ const WishList = () => {
           );
         })}
         </div>
-      
-      }
-      
-      
+      }  
     </div>
   );
 };

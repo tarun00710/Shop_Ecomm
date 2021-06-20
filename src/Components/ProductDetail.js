@@ -4,11 +4,13 @@ import {predispatch} from './Predispatch';
 import { useCart } from "../Context/CartContext";
 import {SignInContext} from "../Context/SignInContext";
 import {ProductCreateContext} from '../Context/ProductContext'
+import {notifyCart,notifyLogin,notifyWishlist} from "./toast";
+
 
 function ProductDetail() {
     const {data}=useContext(ProductCreateContext)
     const { dispatch} = useCart()
-    const {userData}=useContext(SignInContext)
+    const {userData, loggedIn}=useContext(SignInContext)
     const {productId}=useParams()
     const getProduct=data.find((item)=>item._id===productId)
     const {_id,name,image,price,ratings,inStock,material,brand,offer,level,fastDelivery}=getProduct
@@ -23,7 +25,7 @@ function ProductDetail() {
             <div  className="head_title spacing">
                 <p>Offer:{offer}</p>
                 <span><strong>Rs. {price}</strong></span>
-                <p>{inStock?<label>Hurry! Items in Stock</label>:<label>Sorry,no items left</label>}</p>
+                <p>{inStock ? <label> Hurry! Items in Stock </label>:<label>Sorry,no items left</label>}</p>
                 <p  className="head_title">Product-Material - {material}<span>{brand}</span></p>            
                 <p>Product-Type : {level}</p>
                 {fastDelivery?<span>Fast delivery Available</span>:<span>Regular Delivery</span>}
@@ -33,6 +35,7 @@ function ProductDetail() {
             <button
               onClick={async() =>{
                 const check=await predispatch(_id,userData._id,"cart")
+                loggedIn ? notifyCart() : notifyLogin()
                 return check.success ? dispatch({
                   type: "ADD_TO_CART",
                   payload: {
@@ -40,8 +43,7 @@ function ProductDetail() {
                       _id,
                       name,
                       image,
-                      price,
-                     
+                      price,                     
                       inStock,
                       level
                     },
@@ -58,6 +60,7 @@ function ProductDetail() {
             <button
               onClick={async() => {
                 const check=await predispatch(_id,userData._id,"wishlist")
+                loggedIn ? notifyCart() : notifyWishlist()
                 if(check)
                   return dispatch({
                     type: "ADD_TO_WISHLIST",

@@ -94,7 +94,7 @@ const SignUser = () => {
           />
         </div>
         <div class="form-input">
-          <input onClick={postData} type="submit" class="input" />
+          <input onClick={postData} value="Signup" type="submit" class="input" />
         </div>
         <div class="form-input">
           <small>Already Registered?</small>
