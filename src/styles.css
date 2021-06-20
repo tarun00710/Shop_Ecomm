@@ -728,8 +728,9 @@ hr {
 .product-card-detail{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width:80%;
-  object-fit:contain;
-  margin-left: 1rem;
+  width:60%;
+  margin: auto;
+}
+.spacing{
+  margin-top:1rem;
 }

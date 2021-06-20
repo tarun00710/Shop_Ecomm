@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 import {SignInContext} from "../Context/SignInContext";
 import {predispatch} from './Predispatch';
@@ -12,7 +12,7 @@ const ProductCard = ({
   inStock,
   level
 }) => {
-  const { dispatch,isLoading,setisLoading } = useCart();
+  const { dispatch} = useCart();
   const {userData}=useContext(SignInContext)
   return (
     <>
