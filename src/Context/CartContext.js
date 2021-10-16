@@ -112,9 +112,7 @@ const {userData}=useContext(SignInContext);
   },[userData])
 
 
-//  const {cart,wishlist}=userData;
-//  console.log(cart);
-//  console.log(wishlist);
+
   const [state, dispatch] = useReducer(reducerfunction, {
     itemInCart: [],
     itemInWishlist:[],

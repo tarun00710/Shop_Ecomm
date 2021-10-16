@@ -11,7 +11,7 @@ ReactDOM.render(
   <StrictMode>
     <Router>
       <SignInContextProv>     
-        <ContextProvider>
+        <ContextProvider> 
         <ProductContext>
           <ReducerContext>
             <App />

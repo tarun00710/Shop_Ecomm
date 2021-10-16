@@ -5,7 +5,7 @@ const PrivateRoute = ({ path, ...props }) => {
   const { loggedIn } = useContext(SignInContext);
   return loggedIn ? (
     <Route path={path} {...props} />
-  ) : (
+  ) : ( 
     <Navigate state={{ from: path }} replace to="/signin" />
   );
 };

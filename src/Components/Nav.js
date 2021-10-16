@@ -18,17 +18,17 @@ const Nav = ({ handleSidebar }) => {
         <ul className="nav-list">
           <li>
             <NavLink to="/signup" style={linkStyle} activeStyle={activeStyle}>
-              SignUp/LogIn<i class="fa fa-user" aria-hidden="true"></i>
+              SignUp/LogIn <i class="fa fa-user" aria-hidden="true"></i>
             </NavLink>
           </li>
           <li>
             <NavLink to="/wishlist" style={linkStyle} activeStyle={activeStyle}>
-              Wishlist<i className="fa fa-heart" aria-hidden="true"></i>
+              Wishlist <i className="fa fa-heart" aria-hidden="true"></i>
             </NavLink>
           </li>
           <li>
             <NavLink to="/checkout" style={linkStyle} activeStyle={activeStyle}>
-              Cart<i className="fa fa-shopping-cart" aria-hidden="true"></i>
+              Cart <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             </NavLink>
           </li>
         </ul>

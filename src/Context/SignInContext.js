@@ -7,9 +7,8 @@ export const SignInContextProv = ({ children }) => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const { state } = useLocation();
-  const [userData,setUserData] = useState({})
+  const [userData,setUserData] = useState({}) 
 
-  console.log(userData)
   const logIn = async (e, email, password, setuserCheck) => {
     e.preventDefault();
 
@@ -20,8 +19,7 @@ export const SignInContextProv = ({ children }) => {
       if(res.status){
         setUserData(res.data.user)
       }
-      console.log("response",res)
-      if (userData.status === 422 || !userData) {
+      if (res.status === 422 || !userData) {
         window.alert("Invalid Login");
       } else {
         setLoggedIn(true);
