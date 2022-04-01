@@ -1,5 +1,4 @@
 import React,{useContext} from "react";
-// import { useCart } from "../Context/CartContext";
 import {CartContext} from "../Context/CartContext";
 import {SignInContext} from '../Context/SignInContext'
 import Loading from "./Loader";
